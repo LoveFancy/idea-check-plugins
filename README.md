@@ -15,17 +15,6 @@
 - macOS 操作系统
 
 ## 安装说明
-
-### 方法一：从 JetBrains 插件市场安装
-
-1. 打开 IntelliJ IDEA
-2. 进入 Settings/Preferences -> Plugins
-3. 在 Marketplace 中搜索 "Deprecated API Checker"
-4. 点击 Install 安装插件
-5. 重启 IDE
-
-### 方法二：手动安装
-
 1. 下载最新的插件包（.zip 文件）
 2. 打开 IntelliJ IDEA
 3. 进入 Settings/Preferences -> Plugins
