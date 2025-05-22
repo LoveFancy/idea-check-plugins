@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Java
+*.class
+
+# Plugin sandbox
+.idea-sandbox/
+
+# Ignore distribution archives if not needed
+*.zip
+*.tar.gz
+
+# Ignore test reports
+test-results/ 
