@@ -1,0 +1,11 @@
+<options>
+  <configurable id="com.github.gt921.deprecatedapichecker.ui.DeprecatedApiConfigurable" configurable_name="Deprecated API Checker">
+    <option name="删除" hit="  " />
+    <option name="添加" hit="  " />
+    <option name="方法名" hit="   :" />
+    <option name="类名" hit="  :" />
+    <option name="api" hit="Deprecated API Checker" />
+    <option name="checker" hit="Deprecated API Checker" />
+    <option name="deprecated" hit="Deprecated API Checker" />
+  </configurable>
+</options>

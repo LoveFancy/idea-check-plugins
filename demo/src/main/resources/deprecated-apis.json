@@ -1,0 +1,20 @@
+{
+  "deprecatedApis": [
+    {
+      "className": "java.util.Enumeration",
+      "methodName": null
+    },
+    {
+      "className": "java.lang.Thread",
+      "methodName": "stop"
+    },
+    {
+      "className": "com.example.demo.DemoApp",
+      "methodName": "oldMethod"
+    },
+    {
+      "className": "com.example.demo.DemoApp",
+      "methodName": null
+    }
+  ]
+} 
