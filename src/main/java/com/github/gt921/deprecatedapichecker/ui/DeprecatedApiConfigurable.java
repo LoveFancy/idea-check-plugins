@@ -10,7 +10,6 @@ import com.intellij.ui.components.JBScrollPane;
 import com.intellij.util.ui.FormBuilder;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

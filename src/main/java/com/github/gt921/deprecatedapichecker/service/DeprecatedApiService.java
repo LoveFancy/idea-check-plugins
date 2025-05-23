@@ -6,9 +6,6 @@ import com.github.gt921.deprecatedapichecker.settings.DeprecatedApiSettings;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.components.Service;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.project.ProjectManagerListener;
-import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.startup.ProjectActivity;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -106,6 +103,16 @@ public final class DeprecatedApiService implements ProjectActivity {
 
         public void setDeprecatedApis(List<DeprecatedApi> deprecatedApis) {
             this.deprecatedApis = deprecatedApis;
+        }
+    }
+
+    public static void reloadConfig(Project project) {
+        DeprecatedApiService service = project.getService(DeprecatedApiService.class);
+        if (service != null) {
+            VirtualFile configFile = service.findConfigFile(project);
+            if (configFile != null) {
+                service.loadDeprecatedApisFromJson(project, configFile);
+            }
         }
     }
 } 

@@ -6,9 +6,11 @@ import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.psi.*;
-import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.NotNull;
+import com.github.gt921.deprecatedapichecker.util.EntryPointUtil;
+import com.github.gt921.deprecatedapichecker.util.UnusedMethodUtil;
+import com.github.gt921.deprecatedapichecker.service.DeprecatedApiService;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class DeprecatedApiInspection extends LocalInspectionTool {
 
     @Override
     public @NotNull PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly) {
+        DeprecatedApiService.reloadConfig(holder.getProject());
         LOG.info("Building visitor for DeprecatedApiInspection, isOnTheFly: " + isOnTheFly);
         return new JavaElementVisitor() {
             @Override
@@ -177,6 +180,40 @@ public class DeprecatedApiInspection extends LocalInspectionTool {
                             identifier,
                             "使用了废弃的类: " + className,
                             ProblemHighlightType.WARNING
+                        );
+                    }
+                }
+            }
+
+            @Override
+            public void visitMethod(@NotNull PsiMethod method) {
+                String className = method.getContainingClass() != null ? method.getContainingClass().getQualifiedName() : null;
+                String methodName = method.getName();
+                if (className == null) return;
+                List<DeprecatedApi> deprecatedApis = DeprecatedApiSettings.getInstance(holder.getProject()).getDeprecatedApis();
+                boolean isDeprecatedByConfig = false;
+                for (DeprecatedApi api : deprecatedApis) {
+                    if (api.getClassName().equals(className) && api.getMethodName() != null && api.getMethodName().equals(methodName)) {
+                        PsiElement identifier = method.getNameIdentifier();
+                        if (identifier != null) {
+                            holder.registerProblem(
+                                identifier,
+                                "该方法已被标记为废弃方法（根据配置）",
+                                ProblemHighlightType.WARNING
+                            );
+                        }
+                        isDeprecatedByConfig = true;
+                        break;
+                    }
+                }
+                // 只有不在配置中时，才检测无引用且非入口
+                if (!isDeprecatedByConfig && UnusedMethodUtil.isUnusedMethod(method, holder.getProject()) && !EntryPointUtil.isEntryPoint(method)) {
+                    PsiElement identifier = method.getNameIdentifier();
+                    if (identifier != null) {
+                        holder.registerProblem(
+                            identifier,
+                            "该方法在项目中无引用且不是入口方法，建议清理",
+                            ProblemHighlightType.WEAK_WARNING
                         );
                     }
                 }

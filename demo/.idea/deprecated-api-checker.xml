@@ -4,18 +4,16 @@
     <option name="deprecatedApis">
       <list>
         <DeprecatedApi>
-          <option name="className" value="java.util.Enumeration" />
+          <option name="className" value="com.example.demo.config.ConfigDeprecatedApiClass" />
+          <option name="methodName" value="configDeprecatedMethod" />
         </DeprecatedApi>
         <DeprecatedApi>
-          <option name="className" value="java.lang.Thread" />
-          <option name="methodName" value="stop" />
+          <option name="className" value="com.example.demo.entry.DubboDemoService" />
+          <option name="methodName" value="dubboMethod2" />
         </DeprecatedApi>
         <DeprecatedApi>
-          <option name="className" value="com.example.demo.DemoApp" />
-          <option name="methodName" value="oldMethod" />
-        </DeprecatedApi>
-        <DeprecatedApi>
-          <option name="className" value="com.example.demo.DemoApp" />
+          <option name="className" value="com.example.demo.deprecated.DeprecatedMethodClass" />
+          <option name="methodName" value="oldMethod22" />
         </DeprecatedApi>
       </list>
     </option>

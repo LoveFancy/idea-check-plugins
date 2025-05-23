@@ -1,20 +1,16 @@
 {
   "deprecatedApis": [
     {
-      "className": "java.util.Enumeration",
-      "methodName": null
+      "className": "com.example.demo.config.ConfigDeprecatedApiClass",
+      "methodName": "configDeprecatedMethod"
     },
     {
-      "className": "java.lang.Thread",
-      "methodName": "stop"
+      "className": "com.example.demo.entry.DubboDemoService",
+      "methodName": "dubboMethod2"
     },
     {
-      "className": "com.example.demo.DemoApp",
-      "methodName": "oldMethod"
-    },
-    {
-      "className": "com.example.demo.DemoApp",
-      "methodName": null
+      "className": "com.example.demo.deprecated.DeprecatedMethodClass",
+      "methodName": "oldMethod22"
     }
   ]
-} 
+}

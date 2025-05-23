@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 4
+    testImplementation 'junit:junit:4.13.2'
+    // Spring Web
+    implementation 'org.springframework:spring-web:5.3.30'
+    implementation 'org.springframework:spring-context:5.3.30'
+    // Dubbo
+    implementation 'org.apache.dubbo:dubbo:3.2.10'
+} 
