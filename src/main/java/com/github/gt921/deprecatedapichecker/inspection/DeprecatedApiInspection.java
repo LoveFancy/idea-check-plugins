@@ -19,6 +19,10 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.util.PsiTreeUtil;
+import com.intellij.psi.PsiMethodCallExpression;
+import com.intellij.openapi.ui.Messages;
+import com.intellij.refactoring.safeDelete.SafeDeleteHandler;
 
 import java.util.List;
 
@@ -204,34 +208,16 @@ public class DeprecatedApiInspection extends LocalInspectionTool {
                     if (api.getClassName().equals(className) && api.getMethodName() != null && api.getMethodName().equals(methodName)) {
                         PsiElement identifier = method.getNameIdentifier();
                         if (identifier != null) {
-                            StringBuilder msg = new StringBuilder();
-                            msg.append("该方法已被标记为废弃方法（根据配置）");
-                            if (api.getNoModifyDays() > 0) {
-                                msg.append("\n累计无修改时长：").append(api.getNoModifyDays()).append("天");
-                            }
-                            if (api.getNoCallDays() > 0) {
-                                msg.append("\n累计无调用时长：").append(api.getNoCallDays()).append("天");
-                            }
-                            if (api.getLastCommit() != null) {
-                                DeprecatedApi.CommitInfo commit = api.getLastCommit();
-                                msg.append("\n最近一次提交：")
-                                   .append(commit.getDate() != null ? commit.getDate() : "")
-                                   .append(" by ")
-                                   .append(commit.getAuthor() != null ? commit.getAuthor() : "")
-                                   .append(": ")
-                                   .append(commit.getMessage() != null ? commit.getMessage() : "");
-                                if (commit.getId() != null) {
-                                    msg.append(" [").append(commit.getId()).append("]");
-                                }
-                            }
+                            String msg = "该方法已被标记为废弃方法（根据配置）";
                             holder.registerProblem(
                                 identifier,
-                                msg.toString(),
+                                msg,
                                 ProblemHighlightType.WARNING,
                                 new DeleteMethodQuickFix(),
                                 new AnnotateDeprecatedQuickFix(),
                                 new InsertLogQuickFix(className, methodName),
-                                new ShowDeprecatedApiInfoQuickFix(api)
+                                new ShowDeprecatedApiInfoQuickFix(api),
+                                new SafeDeleteQuickFix()
                             );
                         }
                         isDeprecatedByConfig = true;
@@ -451,6 +437,40 @@ public class DeprecatedApiInspection extends LocalInspectionTool {
             javax.swing.SwingUtilities.invokeLater(() -> {
                 com.intellij.openapi.ui.Messages.showInfoMessage(project, msg.toString(), "废弃方法详细信息");
             });
+        }
+    }
+
+    private static class SafeDeleteQuickFix implements LocalQuickFix {
+        @NotNull
+        @Override
+        public String getName() {
+            return "安全删除（IDEA原生）";
+        }
+
+        @NotNull
+        @Override
+        public String getFamilyName() {
+            return "安全删除";
+        }
+
+        @Override
+        public void applyFix(@NotNull Project project, @NotNull ProblemDescriptor descriptor) {
+            PsiElement element = descriptor.getPsiElement();
+            PsiMethod method = null;
+            if (element instanceof PsiMethod) {
+                method = (PsiMethod) element;
+            } else {
+                PsiElement parent = element.getParent();
+                if (parent instanceof PsiMethod) {
+                    method = (PsiMethod) parent;
+                }
+            }
+            if (method != null && method.isValid()) {
+                PsiMethod finalMethod = method;
+                ApplicationManager.getApplication().invokeLater(() -> {
+                    SafeDeleteHandler.invoke(project, new PsiElement[]{finalMethod}, false);
+                });
+            }
         }
     }
 } 
