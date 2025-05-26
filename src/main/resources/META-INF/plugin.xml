@@ -19,11 +19,9 @@
         <projectService serviceImplementation="com.github.gt921.deprecatedapichecker.settings.DeprecatedApiSettings"/>
         <localInspection language="JAVA" shortName="DeprecatedApiInspection" displayName="Deprecated API Checker" groupName="Deprecated API" enabledByDefault="true" level="WARNING" implementationClass="com.github.gt921.deprecatedapichecker.inspection.DeprecatedApiInspection"/>
         <postStartupActivity implementation="com.github.gt921.deprecatedapichecker.service.DeprecatedApiService"/>
-        <projectToolWindow id="DeprecatedApiToolWindow"
-                           factoryClass="com.github.gt921.deprecatedapichecker.ui.DeprecatedApiToolWindowFactory"
-                           anchor="right"
-                           secondary="false"
-                           icon="AllIcons.Toolwindows.ToolWindowMessages"
-                           displayName="Deprecated API Checker"/>
+        <toolWindow id="ProjectInfoWindow"
+                    factoryClass="com.github.gt921.deprecatedapichecker.ui.ProjectInfoToolWindowFactory"
+                    anchor="right"
+                    displayName="项目信息"/>
     </extensions>
 </idea-plugin> 
