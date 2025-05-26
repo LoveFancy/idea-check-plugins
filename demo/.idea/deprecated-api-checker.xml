@@ -1,21 +1,495 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DeprecatedApiSettings">
+    <option name="appId" value="001421" />
     <option name="deprecatedApis">
       <list>
         <DeprecatedApi>
           <option name="className" value="com.example.demo.config.ConfigDeprecatedApiClass" />
-          <option name="methodName" value="configDeprecatedMethod" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="张三" />
+              <option name="date" value="2024-02-01T10:00:00Z" />
+              <option name="id" value="abc123" />
+              <option name="message" value="fix: 优化废弃方法" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="configDeprgecated2Method" />
+          <option name="noCallDays" value="125" />
+          <option name="noModifyDays" value="110" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.config.ConfigDeprecatedApiClass" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="张三" />
+              <option name="date" value="2024-02-01T10:00:00Z" />
+              <option name="id" value="abc123" />
+              <option name="message" value="fix: 优化废弃方法" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="configDeprgecatedMethod" />
+          <option name="noCallDays" value="125" />
+          <option name="noModifyDays" value="110" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.config.ConfigDeprecatedApiClass" />
+          <option name="entry" value="true" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="张三" />
+              <option name="date" value="2024-02-01T10:00:00Z" />
+              <option name="id" value="abc123" />
+              <option name="message" value="fix: 优化废弃方法" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="configDeprgecatedMethod" />
+          <option name="noCallDays" value="125" />
+          <option name="noModifyDays" value="110" />
         </DeprecatedApi>
         <DeprecatedApi>
           <option name="className" value="com.example.demo.entry.DubboDemoService" />
+          <option name="entry" value="true" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="李四" />
+              <option name="date" value="2023-12-10T09:00:00Z" />
+              <option name="id" value="def456" />
+              <option name="message" value="refactor: Dubbo服务废弃" />
+            </CommitInfo>
+          </option>
           <option name="methodName" value="dubboMethod2" />
+          <option name="noCallDays" value="200" />
+          <option name="noModifyDays" value="180" />
         </DeprecatedApi>
         <DeprecatedApi>
           <option name="className" value="com.example.demo.deprecated.DeprecatedMethodClass" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="王五" />
+              <option name="date" value="2023-10-05T14:00:00Z" />
+              <option name="id" value="ghi789" />
+              <option name="message" value="chore: 废弃老方法" />
+            </CommitInfo>
+          </option>
           <option name="methodName" value="oldMethod22" />
+          <option name="noCallDays" value="300" />
+          <option name="noModifyDays" value="250" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service1" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user1" />
+              <option name="date" value="2024-01-01T10:00:00Z" />
+              <option name="id" value="id001" />
+              <option name="message" value="废弃method1" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method1" />
+          <option name="noCallDays" value="20" />
+          <option name="noModifyDays" value="10" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service2" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user2" />
+              <option name="date" value="2024-01-02T10:00:00Z" />
+              <option name="id" value="id002" />
+              <option name="message" value="废弃method2" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method2" />
+          <option name="noCallDays" value="21" />
+          <option name="noModifyDays" value="11" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service3" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user3" />
+              <option name="date" value="2024-01-03T10:00:00Z" />
+              <option name="id" value="id003" />
+              <option name="message" value="废弃method3" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method3" />
+          <option name="noCallDays" value="22" />
+          <option name="noModifyDays" value="12" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service4" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user4" />
+              <option name="date" value="2024-01-04T10:00:00Z" />
+              <option name="id" value="id004" />
+              <option name="message" value="废弃method4" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method4" />
+          <option name="noCallDays" value="23" />
+          <option name="noModifyDays" value="13" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service5" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user5" />
+              <option name="date" value="2024-01-05T10:00:00Z" />
+              <option name="id" value="id005" />
+              <option name="message" value="废弃method5" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method5" />
+          <option name="noCallDays" value="24" />
+          <option name="noModifyDays" value="14" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service6" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user6" />
+              <option name="date" value="2024-01-06T10:00:00Z" />
+              <option name="id" value="id006" />
+              <option name="message" value="废弃method6" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method6" />
+          <option name="noCallDays" value="25" />
+          <option name="noModifyDays" value="15" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service7" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user7" />
+              <option name="date" value="2024-01-07T10:00:00Z" />
+              <option name="id" value="id007" />
+              <option name="message" value="废弃method7" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method7" />
+          <option name="noCallDays" value="26" />
+          <option name="noModifyDays" value="16" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service8" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user8" />
+              <option name="date" value="2024-01-08T10:00:00Z" />
+              <option name="id" value="id008" />
+              <option name="message" value="废弃method8" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method8" />
+          <option name="noCallDays" value="27" />
+          <option name="noModifyDays" value="17" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service9" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user9" />
+              <option name="date" value="2024-01-09T10:00:00Z" />
+              <option name="id" value="id009" />
+              <option name="message" value="废弃method9" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method9" />
+          <option name="noCallDays" value="28" />
+          <option name="noModifyDays" value="18" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service10" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user10" />
+              <option name="date" value="2024-01-10T10:00:00Z" />
+              <option name="id" value="id010" />
+              <option name="message" value="废弃method10" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method10" />
+          <option name="noCallDays" value="29" />
+          <option name="noModifyDays" value="19" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service11" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user11" />
+              <option name="date" value="2024-01-11T10:00:00Z" />
+              <option name="id" value="id011" />
+              <option name="message" value="废弃method11" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method11" />
+          <option name="noCallDays" value="30" />
+          <option name="noModifyDays" value="20" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service12" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user12" />
+              <option name="date" value="2024-01-12T10:00:00Z" />
+              <option name="id" value="id012" />
+              <option name="message" value="废弃method12" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method12" />
+          <option name="noCallDays" value="31" />
+          <option name="noModifyDays" value="21" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service13" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user13" />
+              <option name="date" value="2024-01-13T10:00:00Z" />
+              <option name="id" value="id013" />
+              <option name="message" value="废弃method13" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method13" />
+          <option name="noCallDays" value="32" />
+          <option name="noModifyDays" value="22" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service14" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user14" />
+              <option name="date" value="2024-01-14T10:00:00Z" />
+              <option name="id" value="id014" />
+              <option name="message" value="废弃method14" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method14" />
+          <option name="noCallDays" value="33" />
+          <option name="noModifyDays" value="23" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service15" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user15" />
+              <option name="date" value="2024-01-15T10:00:00Z" />
+              <option name="id" value="id015" />
+              <option name="message" value="废弃method15" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method15" />
+          <option name="noCallDays" value="34" />
+          <option name="noModifyDays" value="24" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service16" />
+          <option name="entry" value="true" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user16" />
+              <option name="date" value="2024-01-16T10:00:00Z" />
+              <option name="id" value="id016" />
+              <option name="message" value="废弃method16" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method16" />
+          <option name="noCallDays" value="35" />
+          <option name="noModifyDays" value="25" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service17" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user17" />
+              <option name="date" value="2024-01-17T10:00:00Z" />
+              <option name="id" value="id017" />
+              <option name="message" value="废弃method17" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method17" />
+          <option name="noCallDays" value="36" />
+          <option name="noModifyDays" value="26" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service18" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user18" />
+              <option name="date" value="2024-01-18T10:00:00Z" />
+              <option name="id" value="id018" />
+              <option name="message" value="废弃method18" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method18" />
+          <option name="noCallDays" value="37" />
+          <option name="noModifyDays" value="27" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service19" />
+          <option name="entry" value="true" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user19" />
+              <option name="date" value="2024-01-19T10:00:00Z" />
+              <option name="id" value="id019" />
+              <option name="message" value="废弃method19" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method19" />
+          <option name="noCallDays" value="38" />
+          <option name="noModifyDays" value="28" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service20" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user20" />
+              <option name="date" value="2024-01-20T10:00:00Z" />
+              <option name="id" value="id020" />
+              <option name="message" value="废弃method20" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method20" />
+          <option name="noCallDays" value="39" />
+          <option name="noModifyDays" value="29" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service21" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user21" />
+              <option name="date" value="2024-01-21T10:00:00Z" />
+              <option name="id" value="id021" />
+              <option name="message" value="废弃method21" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method21" />
+          <option name="noCallDays" value="40" />
+          <option name="noModifyDays" value="30" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service22" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user22" />
+              <option name="date" value="2024-01-22T10:00:00Z" />
+              <option name="id" value="id022" />
+              <option name="message" value="废弃method22" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method22" />
+          <option name="noCallDays" value="41" />
+          <option name="noModifyDays" value="31" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service23" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user23" />
+              <option name="date" value="2024-01-23T10:00:00Z" />
+              <option name="id" value="id023" />
+              <option name="message" value="废弃method23" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method23" />
+          <option name="noCallDays" value="42" />
+          <option name="noModifyDays" value="32" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service24" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user24" />
+              <option name="date" value="2024-01-24T10:00:00Z" />
+              <option name="id" value="id024" />
+              <option name="message" value="废弃method24" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method24" />
+          <option name="noCallDays" value="43" />
+          <option name="noModifyDays" value="33" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service25" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user25" />
+              <option name="date" value="2024-01-25T10:00:00Z" />
+              <option name="id" value="id025" />
+              <option name="message" value="废弃method25" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method25" />
+          <option name="noCallDays" value="44" />
+          <option name="noModifyDays" value="34" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service26" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user26" />
+              <option name="date" value="2024-01-26T10:00:00Z" />
+              <option name="id" value="id026" />
+              <option name="message" value="废弃method26" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method26" />
+          <option name="noCallDays" value="45" />
+          <option name="noModifyDays" value="35" />
+        </DeprecatedApi>
+        <DeprecatedApi>
+          <option name="className" value="com.example.demo.service.Service27" />
+          <option name="entry" value="false" />
+          <option name="lastCommit">
+            <CommitInfo>
+              <option name="author" value="user27" />
+              <option name="date" value="2024-01-27T10:00:00Z" />
+              <option name="id" value="id027" />
+              <option name="message" value="废弃method27" />
+            </CommitInfo>
+          </option>
+          <option name="methodName" value="method27" />
+          <option name="noCallDays" value="46" />
+          <option name="noModifyDays" value="36" />
         </DeprecatedApi>
       </list>
     </option>
+    <option name="lastLoadTime" value="2025-05-26 16:01:16" />
+    <option name="loadMode" value="local" />
+    <option name="localFilePath" value="$PROJECT_DIR$/src/main/resources/deprecated-apis.json" />
+    <option name="unitId" value="qx-test-ms" />
+    <option name="useMock" value="false" />
   </component>
 </project>

@@ -8,6 +8,7 @@ public class DeprecatedApi {
     private CommitInfo lastCommit;
     private int noModifyDays;
     private int noCallDays;
+    private Boolean entry;
 
     public static class CommitInfo {
         private String id;
@@ -59,6 +60,8 @@ public class DeprecatedApi {
     public void setNoModifyDays(int noModifyDays) { this.noModifyDays = noModifyDays; }
     public int getNoCallDays() { return noCallDays; }
     public void setNoCallDays(int noCallDays) { this.noCallDays = noCallDays; }
+    public Boolean getEntry() { return entry; }
+    public void setEntry(Boolean entry) { this.entry = entry; }
 
     @Override
     public boolean equals(Object o) {

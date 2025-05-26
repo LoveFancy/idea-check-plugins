@@ -13,6 +13,9 @@ import java.awt.BorderLayout;
 import javax.swing.Box;
 import java.awt.FlowLayout;
 import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,12 +36,28 @@ import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.icons.AllIcons;
 
 public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        // 每次进入项目信息页时，自动重新加载API配置
+        DeprecatedApiService.reloadConfig(project);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+
+        // 顶部工具栏
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+        toolBar.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        JButton refreshBtn = new JButton(AllIcons.Actions.Refresh);
+        refreshBtn.setToolTipText("刷新接口清单");
+        refreshBtn.setFocusable(false);
+        JButton configBtn = new JButton(AllIcons.General.Settings);
+        configBtn.setToolTipText("插件配置");
+        configBtn.setFocusable(false);
+        toolBar.add(refreshBtn);
+        toolBar.add(configBtn);
+        mainPanel.add(toolBar, BorderLayout.NORTH);
 
         // 顶部项目信息
         DeprecatedApiSettings settings = DeprecatedApiSettings.getInstance(project);
@@ -46,6 +65,8 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
         String unitId = settings.getUnitId();
         JLabel appIdLabel = new JLabel("应用ID: " + (appId != null ? appId : ""));
         JLabel unitIdLabel = new JLabel("单元ID: " + (unitId != null ? unitId : ""));
+        JLabel loadModeLabel = new JLabel();
+        JLabel updateTimeLabel = new JLabel();
 
         // 配置文件路径
         String configFilePath = "";
@@ -69,25 +90,24 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.add(appIdLabel);
         infoPanel.add(unitIdLabel);
-        infoPanel.add(configFileLabel);
-        infoPanel.add(configFileTimeLabel);
+        infoPanel.add(loadModeLabel);
+        infoPanel.add(updateTimeLabel);
         infoPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JPanel infoBorderPanel = new JPanel(new BorderLayout());
         infoBorderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("基本信息"));
         infoBorderPanel.add(infoPanel, BorderLayout.CENTER);
 
+        // 初始化加载方式和更新时间
+        updateInfoLabels(settings, loadModeLabel, updateTimeLabel);
+
         // 接口信息面板
         JButton jumpToCodeBtn = new JButton("跳转代码");
         jumpToCodeBtn.setEnabled(false);
-        JButton refreshBtn = new JButton("刷新");
         JPanel tableTopPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         tableTopPanel.add(jumpToCodeBtn);
-        tableTopPanel.add(refreshBtn);
 
-        // 基本信息面板的时间标签引用
-        JLabel lastReadTimeLabel = new JLabel();
-        updateLastReadTime(lastReadTimeLabel);
-        infoPanel.add(lastReadTimeLabel);
+        JCheckBox entryFilterCheckBox = new JCheckBox("只显示入口方法");
+        tableTopPanel.add(entryFilterCheckBox, 0);
 
         // API清单表格+分页
         List<DeprecatedApi> allApis = settings.getDeprecatedApis();
@@ -96,6 +116,7 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
             @Override
             public Class<?> getColumnClass(int column) {
                 if (column == 0) return Boolean.class;
+                if (column == 6) return Boolean.class;
                 return super.getColumnClass(column);
             }
         };
@@ -139,29 +160,33 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
 
         // 刷新按钮逻辑
         refreshBtn.addActionListener(e -> {
-            DeprecatedApiService.reloadConfig(project);
-            DeprecatedApiSettings settingsNew = DeprecatedApiSettings.getInstance(project);
-            List<DeprecatedApi> newApis = settingsNew.getDeprecatedApis();
-            tableModel.setApis(newApis);
-            updateLastReadTime(lastReadTimeLabel);
-            // 重新获取appId/unitId/configFile等信息
-            appIdLabel.setText("应用ID: " + (settingsNew.getAppId() != null ? settingsNew.getAppId() : ""));
-            unitIdLabel.setText("单元ID: " + (settingsNew.getUnitId() != null ? settingsNew.getUnitId() : ""));
-            String newConfigFilePath = "";
-            String newConfigFileTime = "";
-            DeprecatedApiService newService = project.getService(DeprecatedApiService.class);
-            VirtualFile newConfigFile = null;
             try {
-                java.lang.reflect.Method m = newService.getClass().getDeclaredMethod("findConfigFile", Project.class);
-                m.setAccessible(true);
-                newConfigFile = (VirtualFile) m.invoke(newService, project);
-            } catch (Exception ignored) {}
-            if (newConfigFile != null && newConfigFile.exists()) {
-                newConfigFilePath = newConfigFile.getPath();
-                newConfigFileTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(newConfigFile.getTimeStamp()));
+                DeprecatedApiService.reloadConfig(project);
+                // 强制重新获取 settings 实例，确保拿到最新的 lastLoadTime
+                DeprecatedApiSettings settingsNew = DeprecatedApiSettings.getInstance(project);
+                // 重新获取API数据
+                List<DeprecatedApi> newApis = settingsNew.getDeprecatedApis();
+                tableModel.setApis(newApis);
+                // 重新刷新加载方式和更新时间
+                updateInfoLabels(settingsNew, loadModeLabel, updateTimeLabel);
+                // 重新获取appId/unitId
+                appIdLabel.setText("应用ID: " + (settingsNew.getAppId() != null ? settingsNew.getAppId() : ""));
+                unitIdLabel.setText("单元ID: " + (settingsNew.getUnitId() != null ? settingsNew.getUnitId() : ""));
+                // 刷新成功提示
+                javax.swing.JOptionPane.showMessageDialog(mainPanel, "刷新成功，共加载 " + (newApis != null ? newApis.size() : 0) + " 条记录", "刷新结果", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                ex.printStackTrace(); // 控制台输出完整异常
+                String msg = ex.getMessage();
+                if (msg == null || msg.isEmpty()) {
+                    msg = ex.toString(); // 显示异常类型
+                }
+                javax.swing.JOptionPane.showMessageDialog(mainPanel, "刷新失败：" + msg, "刷新结果", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-            configFileLabel.setText("配置文件: " + (newConfigFilePath.isEmpty() ? "未找到" : newConfigFilePath));
-            configFileTimeLabel.setText(newConfigFileTime.isEmpty() ? "" : ("更新时间: " + newConfigFileTime));
+        });
+
+        // 配置按钮逻辑
+        configBtn.addActionListener(e -> {
+            com.intellij.openapi.options.ShowSettingsUtil.getInstance().showSettingsDialog(project, "Deprecated API Checker");
         });
 
         // 分页控件
@@ -193,18 +218,15 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
         tableBorderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("接口信息"));
         tableBorderPanel.add(tablePanel, BorderLayout.CENTER);
 
-        // 主面板垂直排列
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.add(infoBorderPanel);
-        mainPanel.add(Box.createVerticalStrut(12));
-        mainPanel.add(tableBorderPanel);
+        // 主内容区
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.add(infoBorderPanel);
+        contentPanel.add(Box.createVerticalStrut(12));
+        contentPanel.add(tableBorderPanel);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        // 外层加内边距
-        JPanel outerPanel = new JPanel(new BorderLayout());
-        outerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 16, 12, 16));
-        outerPanel.add(mainPanel, BorderLayout.CENTER);
-
-        Content content = ContentFactory.getInstance().createContent(outerPanel, "项目信息", false);
+        Content content = ContentFactory.getInstance().createContent(mainPanel, "项目信息", false);
         toolWindow.getContentManager().addContent(content);
 
         // 表格右键菜单：复制单元格内容
@@ -242,23 +264,35 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
                 }
             }
         });
+
+        // entry筛选逻辑
+        entryFilterCheckBox.addActionListener(e -> {
+            tableModel.setEntryFilter(entryFilterCheckBox.isSelected());
+        });
     }
 
     // 分页表格模型
     private static class ApiTableModel extends AbstractTableModel {
-        private final String[] columns = {"选择", "类名", "方法名", "无修改天数", "无调用天数", "最近提交"};
+        private final String[] columns = {"选择", "类名", "方法名", "无修改天数", "无调用天数", "最近提交", "入口"};
         private final List<DeprecatedApi> allApis;
         private List<DeprecatedApi> pageApis;
         private final int pageSize = 15;
         private int currentPage = 0;
         private int totalPages = 1;
         private int selectedRow = -1; // 当前页选中行
+        private boolean entryFilter = false;
         public ApiTableModel(List<DeprecatedApi> apis) {
-            this.allApis = apis != null ? apis : new java.util.ArrayList<>();
+            this.allApis = new java.util.ArrayList<>(apis != null ? apis : new java.util.ArrayList<>());
+            updatePage();
+        }
+        public void setEntryFilter(boolean filter) {
+            this.entryFilter = filter;
+            this.currentPage = 0;
             updatePage();
         }
         private void updatePage() {
-            int total = allApis.size();
+            List<DeprecatedApi> filtered = entryFilter ? allApis.stream().filter(api -> Boolean.TRUE.equals(api.getEntry())).toList() : allApis;
+            int total = filtered.size();
             totalPages = (total + pageSize - 1) / pageSize;
             if (totalPages == 0) totalPages = 1;
             int from = currentPage * pageSize;
@@ -268,7 +302,7 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
                 currentPage = 0;
                 to = Math.min(pageSize, total);
             }
-            pageApis = allApis.subList(from, to);
+            pageApis = filtered.subList(from, to);
             selectedRow = -1;
             fireTableDataChanged();
         }
@@ -308,6 +342,7 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
                     DeprecatedApi.CommitInfo c = api.getLastCommit();
                     if (c == null) return "";
                     return (c.getDate() != null ? c.getDate() : "") + " by " + (c.getAuthor() != null ? c.getAuthor() : "") + (c.getMessage() != null ? (": " + c.getMessage()) : "");
+                case 6: return Boolean.TRUE.equals(api.getEntry());
                 default: return "";
             }
         }
@@ -325,7 +360,7 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
         }
         public void setApis(List<DeprecatedApi> apis) {
             this.allApis.clear();
-            this.allApis.addAll(apis != null ? apis : new java.util.ArrayList<>());
+            this.allApis.addAll(apis != null ? new java.util.ArrayList<>(apis) : new java.util.ArrayList<>());
             this.currentPage = 0;
             updatePage();
         }
@@ -356,8 +391,12 @@ public class ProjectInfoToolWindowFactory implements ToolWindowFactory {
         });
     }
 
-    // 更新最后读取时间方法
-    private void updateLastReadTime(JLabel label) {
-        label.setText("最后读取时间: " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()));
+    // 工具方法
+    private void updateInfoLabels(DeprecatedApiSettings settings, JLabel loadModeLabel, JLabel updateTimeLabel) {
+        String mode = settings.getLoadMode();
+        String modeText = "远端获取";
+        if ("local".equals(mode)) modeText = "本地文件";
+        loadModeLabel.setText("加载方式: " + modeText);
+        updateTimeLabel.setText("更新时间: " + (settings.getLastLoadTime() != null ? settings.getLastLoadTime() : "-"));
     }
 } 

@@ -8,7 +8,4 @@ public class DubboDemoService {
         System.out.println("Dubbo service method");
     }
 
-    public void dubboMethod2() {
-        System.out.println("Dubbo service method 2");
-    }
-} 
+}

@@ -2,15 +2,284 @@
   "deprecatedApis": [
     {
       "className": "com.example.demo.config.ConfigDeprecatedApiClass",
-      "methodName": "configDeprecatedMethod"
+      "methodName": "configDeprgecated2Method",
+      "noModifyDays": 110,
+      "noCallDays": 125,
+      "lastCommit": {
+        "id": "abc123",
+        "author": "张三",
+        "date": "2024-02-01T10:00:00Z",
+        "message": "fix: 优化废弃方法"
+      },
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.config.ConfigDeprecatedApiClass",
+      "methodName": "configDeprgecatedMethod",
+      "noModifyDays": 110,
+      "noCallDays": 125,
+      "lastCommit": {
+        "id": "abc123",
+        "author": "张三",
+        "date": "2024-02-01T10:00:00Z",
+        "message": "fix: 优化废弃方法"
+      },
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.config.ConfigDeprecatedApiClass",
+      "methodName": "configDeprgecatedMethod",
+      "noModifyDays": 110,
+      "noCallDays": 125,
+      "lastCommit": {
+        "id": "abc123",
+        "author": "张三",
+        "date": "2024-02-01T10:00:00Z",
+        "message": "fix: 优化废弃方法"
+      },
+      "entry": true
     },
     {
       "className": "com.example.demo.entry.DubboDemoService",
-      "methodName": "dubboMethod2"
+      "methodName": "dubboMethod2",
+      "noModifyDays": 180,
+      "noCallDays": 200,
+      "lastCommit": {
+        "id": "def456",
+        "author": "李四",
+        "date": "2023-12-10T09:00:00Z",
+        "message": "refactor: Dubbo服务废弃"
+      },
+      "entry": true
     },
     {
       "className": "com.example.demo.deprecated.DeprecatedMethodClass",
-      "methodName": "oldMethod22"
+      "methodName": "oldMethod22",
+      "noModifyDays": 250,
+      "noCallDays": 300,
+      "lastCommit": {
+        "id": "ghi789",
+        "author": "王五",
+        "date": "2023-10-05T14:00:00Z",
+        "message": "chore: 废弃老方法"
+      },
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service1",
+      "methodName": "method1",
+      "noModifyDays": 10,
+      "noCallDays": 20,
+      "lastCommit": {"id": "id001", "author": "user1", "date": "2024-01-01T10:00:00Z", "message": "废弃method1"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service2",
+      "methodName": "method2",
+      "noModifyDays": 11,
+      "noCallDays": 21,
+      "lastCommit": {"id": "id002", "author": "user2", "date": "2024-01-02T10:00:00Z", "message": "废弃method2"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service3",
+      "methodName": "method3",
+      "noModifyDays": 12,
+      "noCallDays": 22,
+      "lastCommit": {"id": "id003", "author": "user3", "date": "2024-01-03T10:00:00Z", "message": "废弃method3"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service4",
+      "methodName": "method4",
+      "noModifyDays": 13,
+      "noCallDays": 23,
+      "lastCommit": {"id": "id004", "author": "user4", "date": "2024-01-04T10:00:00Z", "message": "废弃method4"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service5",
+      "methodName": "method5",
+      "noModifyDays": 14,
+      "noCallDays": 24,
+      "lastCommit": {"id": "id005", "author": "user5", "date": "2024-01-05T10:00:00Z", "message": "废弃method5"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service6",
+      "methodName": "method6",
+      "noModifyDays": 15,
+      "noCallDays": 25,
+      "lastCommit": {"id": "id006", "author": "user6", "date": "2024-01-06T10:00:00Z", "message": "废弃method6"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service7",
+      "methodName": "method7",
+      "noModifyDays": 16,
+      "noCallDays": 26,
+      "lastCommit": {"id": "id007", "author": "user7", "date": "2024-01-07T10:00:00Z", "message": "废弃method7"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service8",
+      "methodName": "method8",
+      "noModifyDays": 17,
+      "noCallDays": 27,
+      "lastCommit": {"id": "id008", "author": "user8", "date": "2024-01-08T10:00:00Z", "message": "废弃method8"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service9",
+      "methodName": "method9",
+      "noModifyDays": 18,
+      "noCallDays": 28,
+      "lastCommit": {"id": "id009", "author": "user9", "date": "2024-01-09T10:00:00Z", "message": "废弃method9"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service10",
+      "methodName": "method10",
+      "noModifyDays": 19,
+      "noCallDays": 29,
+      "lastCommit": {"id": "id010", "author": "user10", "date": "2024-01-10T10:00:00Z", "message": "废弃method10"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service11",
+      "methodName": "method11",
+      "noModifyDays": 20,
+      "noCallDays": 30,
+      "lastCommit": {"id": "id011", "author": "user11", "date": "2024-01-11T10:00:00Z", "message": "废弃method11"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service12",
+      "methodName": "method12",
+      "noModifyDays": 21,
+      "noCallDays": 31,
+      "lastCommit": {"id": "id012", "author": "user12", "date": "2024-01-12T10:00:00Z", "message": "废弃method12"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service13",
+      "methodName": "method13",
+      "noModifyDays": 22,
+      "noCallDays": 32,
+      "lastCommit": {"id": "id013", "author": "user13", "date": "2024-01-13T10:00:00Z", "message": "废弃method13"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service14",
+      "methodName": "method14",
+      "noModifyDays": 23,
+      "noCallDays": 33,
+      "lastCommit": {"id": "id014", "author": "user14", "date": "2024-01-14T10:00:00Z", "message": "废弃method14"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service15",
+      "methodName": "method15",
+      "noModifyDays": 24,
+      "noCallDays": 34,
+      "lastCommit": {"id": "id015", "author": "user15", "date": "2024-01-15T10:00:00Z", "message": "废弃method15"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service16",
+      "methodName": "method16",
+      "noModifyDays": 25,
+      "noCallDays": 35,
+      "lastCommit": {"id": "id016", "author": "user16", "date": "2024-01-16T10:00:00Z", "message": "废弃method16"},
+      "entry": true
+    },
+    {
+      "className": "com.example.demo.service.Service17",
+      "methodName": "method17",
+      "noModifyDays": 26,
+      "noCallDays": 36,
+      "lastCommit": {"id": "id017", "author": "user17", "date": "2024-01-17T10:00:00Z", "message": "废弃method17"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service18",
+      "methodName": "method18",
+      "noModifyDays": 27,
+      "noCallDays": 37,
+      "lastCommit": {"id": "id018", "author": "user18", "date": "2024-01-18T10:00:00Z", "message": "废弃method18"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service19",
+      "methodName": "method19",
+      "noModifyDays": 28,
+      "noCallDays": 38,
+      "lastCommit": {"id": "id019", "author": "user19", "date": "2024-01-19T10:00:00Z", "message": "废弃method19"},
+      "entry": true
+    },
+    {
+      "className": "com.example.demo.service.Service20",
+      "methodName": "method20",
+      "noModifyDays": 29,
+      "noCallDays": 39,
+      "lastCommit": {"id": "id020", "author": "user20", "date": "2024-01-20T10:00:00Z", "message": "废弃method20"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service21",
+      "methodName": "method21",
+      "noModifyDays": 30,
+      "noCallDays": 40,
+      "lastCommit": {"id": "id021", "author": "user21", "date": "2024-01-21T10:00:00Z", "message": "废弃method21"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service22",
+      "methodName": "method22",
+      "noModifyDays": 31,
+      "noCallDays": 41,
+      "lastCommit": {"id": "id022", "author": "user22", "date": "2024-01-22T10:00:00Z", "message": "废弃method22"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service23",
+      "methodName": "method23",
+      "noModifyDays": 32,
+      "noCallDays": 42,
+      "lastCommit": {"id": "id023", "author": "user23", "date": "2024-01-23T10:00:00Z", "message": "废弃method23"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service24",
+      "methodName": "method24",
+      "noModifyDays": 33,
+      "noCallDays": 43,
+      "lastCommit": {"id": "id024", "author": "user24", "date": "2024-01-24T10:00:00Z", "message": "废弃method24"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service25",
+      "methodName": "method25",
+      "noModifyDays": 34,
+      "noCallDays": 44,
+      "lastCommit": {"id": "id025", "author": "user25", "date": "2024-01-25T10:00:00Z", "message": "废弃method25"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service26",
+      "methodName": "method26",
+      "noModifyDays": 35,
+      "noCallDays": 45,
+      "lastCommit": {"id": "id026", "author": "user26", "date": "2024-01-26T10:00:00Z", "message": "废弃method26"},
+      "entry": false
+    },
+    {
+      "className": "com.example.demo.service.Service27",
+      "methodName": "method27",
+      "noModifyDays": 36,
+      "noCallDays": 46,
+      "lastCommit": {"id": "id027", "author": "user27", "date": "2024-01-27T10:00:00Z", "message": "废弃method27"},
+      "entry": false
     }
   ]
 }

@@ -51,4 +51,9 @@ tasks {
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 } 

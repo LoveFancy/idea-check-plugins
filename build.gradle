@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '1.17.3'
+}
+
+repositories {
+    mavenCentral()
+}
+
+intellij {
+    version = '2024.1'
+    plugins = ['java']
+    updateSinceUntilBuild = false
+    // plugins = ['git4idea'] // 移除git4idea依赖，兼容社区版
+}
+
+patchPluginXml {
+    sinceBuild = '241'
+    untilBuild = '252.*'
+}
+
+// ... 其他配置 ... 
